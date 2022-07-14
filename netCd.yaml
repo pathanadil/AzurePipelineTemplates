@@ -8,7 +8,7 @@ parameters:
 
 - name: azureSubscription
   type: string  
-  default: "334264f8-16d6-4fdf-95a9-755a26b82e90"
+  default: "Cloud Lab (f83aae0f-b5dd-4ce9-8483-a007ea91312b)"
 
 - name: appType
   type: string 
