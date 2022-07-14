@@ -1,0 +1,31 @@
+# This template will deploy .Net applcation to Azure webApp
+# First Task will download the artifact 
+# Second Task will deploy to web application provided with Azure subcription  
+parameters:
+- name: artifactName
+  type: string  
+  default: "drop"
+
+- name: azureSubscription
+  type: string  
+
+- name: appType
+  type: string 
+  default: "webApp"
+
+- name: webApp
+  type: string 
+  default: "insight-webapp"
+
+steps:
+ - task: DownloadPipelineArtifact@2
+   inputs:
+    artifact: ${{parameters.artifactName}}
+    path: $(build.artifactstagingdirectory)
+ - task: AzureWebApp@1
+   displayName: 'Azure Web App Deploy: insight-webapp'
+   inputs:
+    azureSubscription: ${{parameters.azureSubscription}}
+    appType: ${{parameters.appType}}
+    appName: ${{parameters.webApp}}
+    package: $(build.artifactstagingdirectory)/**/*.zip

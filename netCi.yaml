@@ -1,0 +1,41 @@
+parameters:
+- name: solution
+  type: string  
+  default: "**/*.sln"
+
+- name: buildArguments 
+  type: string  
+  default: "--configuration  Release"
+
+- name: publishArguments 
+  type: string  
+  default: "--configuration Release --output $(build.artifactstagingdirectory)"
+
+- name: artifactName 
+  type: string  
+  default: "drop" 
+
+steps:
+  - checkout: self
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+    command: restore 
+    projects: ${{parameters.solution}}
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+    arguments: ${{parameters.buildArguments}}
+    projects: ${{parameters.solution}}
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: ${{parameters.publishArguments}}
+    zipAfterPublish: True
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: ${{parameters.artifactName}}
