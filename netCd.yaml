@@ -8,6 +8,7 @@ parameters:
 
 - name: azureSubscription
   type: string  
+  default: "334264f8-16d6-4fdf-95a9-755a26b82e90"
 
 - name: appType
   type: string 
@@ -15,7 +16,7 @@ parameters:
 
 - name: webApp
   type: string 
-  default: "insight-webapp"
+  default: "BookstoreProjectWebApp"
 
 steps:
  - task: DownloadPipelineArtifact@2
