@@ -19,23 +19,23 @@ steps:
   - checkout: self
   - task: DotNetCoreCLI@2
     displayName: Restore
-    inputs:
-    command: restore 
-    projects: ${{parameters.solution}}
+    inputs: 
+      command: restore 
+      projects: ${{parameters.solution}}
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
-    arguments: ${{parameters.buildArguments}}
-    projects: ${{parameters.solution}}
+      arguments: ${{parameters.buildArguments}}
+      projects: ${{parameters.solution}}
   - task: DotNetCoreCLI@2
     displayName: Publish
     inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: ${{parameters.publishArguments}}
-    zipAfterPublish: True
+      command: publish
+      publishWebProjects: True
+      arguments: ${{parameters.publishArguments}}
+      zipAfterPublish: True
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact'
     inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: ${{parameters.artifactName}}
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+      ArtifactName: ${{parameters.artifactName}}
