@@ -6,17 +6,6 @@ parameters:
   type: string  
   default: "drop"
 
-- name: azureSubscription
-  type: string  
-  default: "${{variables.azureSubscription}}"
-
-- name: appType
-  type: string 
-  default: "${{variables.apptype}}"
-
-- name: webApp
-  type: string 
-  default: "${{variables.webapp}}"
 
 steps:
  - task: DownloadPipelineArtifact@2
@@ -26,7 +15,7 @@ steps:
  - task: AzureWebApp@1
    displayName: 'Azure Web App Deploy: insight-webapp'
    inputs:
-    azureSubscription: ${{parameters.azureSubscription}}
-    appType: ${{parameters.appType}}
-    appName: ${{parameters.webApp}}
+    azureSubscription: ${{variables.azureSubscription}}
+    appType: ${{variables.apptype}}
+    appName: ${{variables.webapp}}
     package: $(build.artifactstagingdirectory)/**/*.zip
