@@ -8,15 +8,15 @@ parameters:
 
 - name: azureSubscription
   type: string  
-  default: ${{variables.azureSubscription}}
+  default: "${{variables.azureSubscription}}"
 
 - name: appType
   type: string 
-  default: ${{variables.apptype}}
+  default: "${{variables.apptype}}"
 
 - name: webApp
   type: string 
-  default: ${{variables.webapp}}
+  default: "${{variables.webapp}}"
 
 steps:
  - task: DownloadPipelineArtifact@2
