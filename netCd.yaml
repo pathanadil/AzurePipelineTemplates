@@ -8,15 +8,15 @@ parameters:
 
 - name: azureSubscription
   type: string  
-  default: "Cloud Lab (f83aae0f-b5dd-4ce9-8483-a007ea91312b)"
+  default: ${{variables.azureSubscription}}
 
 - name: appType
   type: string 
-  default: "webApp"
+  default: ${{variables.apptype}}
 
 - name: webApp
   type: string 
-  default: "BookstoreProjectWebApp"
+  default: ${{variables.webapp}}
 
 steps:
  - task: DownloadPipelineArtifact@2
